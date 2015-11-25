@@ -1,3 +1,6 @@
+# Ignore csv output files by default when committing
+output.csv
+
 # Vim files
 *~
 

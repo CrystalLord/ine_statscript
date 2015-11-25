@@ -16,7 +16,7 @@ import sys
 class Printer:
 	def __init__(self):
 		self.text = ""
-		self.csv = '"Tab","Subreddit","Subscribers","Number of Posts","Health"\n'
+		self.csv = '"Tab","Subreddit","Subscribers","Number of Posts","Health","Posts/subs"\n'
 
 	def p(self, text):
 		self.text += text+'\n'
@@ -25,8 +25,13 @@ class Printer:
 	def append_text(self, text):
 		self.text += text+'\n'
 
-	def append_csv(self, tab, subreddit, subscribers, health, num_of_posts):
-		self.csv += '"'+tab+'","'+subreddit+'",'+str(subscribers)+','+str(num_of_posts)+',"'+health+'"\n'
+	def append_csv(self, l):
+		for element in l:
+			if type(element) == int() or type(element) == float():
+				self.csv += ','+str(element)
+			else:
+				self.csv += '"'+str(element)+'",'
+		self.csv += "\n"
 
 	def output_csv(self):
 		return self.text
@@ -66,13 +71,13 @@ class INESubreddit:
 			-name: name of the subreddit
 			-tab: tab of this INE subreddit. Set to unlisted by default.
 		'''
-		self.__reddit = reddit
+		self.reddit = reddit
 		self.name = name
 		self.tab = tab
 		
-		self.__inst = None
-		self.__var = None
-		self.__submissions = list()
+		self.inst = None
+		self.var = None
+		self.submissions = list()
 
 	def __repr__(self):
 		'''
@@ -81,7 +86,7 @@ class INESubreddit:
 			@return
 			Returns a string representation
 		'''
-		s = "INESubreddit("+str(self.__reddit)+","+self.name+","+self.tab+")"
+		s = "INESubreddit("+str(self.reddit)+","+self.name+","+self.tab+")"
 		return s
 
 	def pprint(self):
@@ -110,46 +115,30 @@ class INESubreddit:
 		start_time = time.time()
 
 		if to_update == "all":
-			self.__inst = self.__reddit.get_subreddit(str('imaginary'+self.name), fetch=True)
-			self.__var = vars(self.__inst)
-			self.__submissions = self.last_submissions(time_limit)
+			self.inst = self.reddit.get_subreddit(str('imaginary'+self.name), fetch=True)
+			self.var = vars(self.inst)
+			self.submissions = self.last_submissions(time_limit)
 		elif to_update == "instance":
-			self.__inst = self.__reddit.get_subreddit(str('imaginary'+self.name), fetch=True)
-			self.__vars = vars(self.__inst)
+			self.inst = self.reddit.get_subreddit(str('imaginary'+self.name), fetch=True)
+			self.var = vars(self.inst)
 		elif to_update == "submissions":
-			self.__submissions = self.last_submissions(time_limit)
+			self.submissions = self.last_submissions(time_limit)
 
 		# May be useless, but it's always good to have some debug data
 		return time.time()-start_time
 	
 	def last_submissions(self, time_limit=30):
-		submissions = self.get_inst().get_new(limit=100)
+		submissions = self.inst.get_new(limit=100)
 		filtered_submissions = []
 		for s in submissions:
 			v = vars(s)
 			if time.time()-v["created_utc"] <= time_limit*24*60*60:
 				filtered_submissions.append(s)
 		return filtered_submissions
-
-
-	def get_inst(self):
-		'''
-		Returns the subreddit instance associated with this INESubreddit
-		'''
-		return self.__inst
-	
-	def get_vars(self):
-		'''
-		Returns a dictionary representation of the subreddit instance
-		'''
-		return self.__var
-	
+		
 	def get_subscribers(self):
-		return self.__var["subscribers"]
+		return self.var["subscribers"]
 	
-	def get_time_filtered_submissions(self):
-		return self.__submissions
-
 	def get_submissions_health(self, threshold=HealthThreshold(15, 5),time_limit=30):
 		'''
 		Checks the health based on a HealthThreshold object
@@ -160,7 +149,18 @@ class INESubreddit:
 			@return
 			Returns the health of this INESubreddit instance
 		'''
-		return threshold.rate_health(len(self.get_time_filtered_submissions()))
+		return threshold.rate_health(len(self.submissions))
+	
+	def post_subscriber_ratio(self):
+		'''
+		Gets the post subscriber ratio
+			
+			@return
+			Returns posts divided by subscribers
+		'''
+		return len(self.submissions)/self.get_subscribers()
+	
+	def 
 
 characters = [
 	'archers',
@@ -199,7 +199,13 @@ def main():
 	for s in range(len(characters)):
 		sub = INESubreddit(r, characters[s], "characters")
 		update_time = sub.update("all",30)
-		printer.append_csv("characters",characters[s],sub.get_subscribers(),sub.get_submissions_health(),len(sub.get_time_filtered_submissions()))
+		printer.append_csv([
+			"characters",
+			characters[s],sub.get_subscribers(),
+			sub.get_submissions_health(),
+			len(sub.submissions),
+			round(sub.post_subscriber_ratio()*100)/100
+			])
 	
 	output_file = open("output.csv","w")
 	output_file.write(printer.output_csv())
