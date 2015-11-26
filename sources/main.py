@@ -1,0 +1,119 @@
+#
+# Filename: main.py
+#
+# Authors:
+# -/u/CVance1
+# -/u/CrystalLord
+#
+
+import time
+import praw
+import sys
+
+from csv_printer import *
+from ine_subreddit import *
+from health_threshold import *
+
+TABS = [
+	'characters',
+	'races',
+	'landscapes',
+	'nature',
+	'architecture',
+	'monsters',
+	'technology',
+	'fandoms',
+	'nsfw',
+	'meta'
+	]
+
+OUTPUT_NAME = "output.csv"
+
+def main():
+	'''
+	Main function
+	'''
+	start_time = time.time()
+	r = praw.Reddit(user_agent="Imaginary_Network_Expanded_Health_Script")
+	printer = CSVPrinter()	
+
+	output = ""
+	count = 0
+	
+	for tab in TABS:
+		tab_list = get_tab_list(r, tab)
+		for s in range(len(tab_list)):
+			try:
+				print("Getting "+tab_list[s].display_name+" data...")
+				sub = INESubreddit(r,tab_list[s], tab)
+				update_time = sub.update("all",30)
+				printer.append_csv([
+					tab,
+					tab_list[s],
+					sub.get_subscribers(),
+					len(sub.submissions),
+					sub.get_submissions_health(),
+					round(sub.post_subscriber_ratio()*1000)/1000
+					])
+			except(praw.errors.Forbidden):
+				# It's a forbidden subreddit, display an error and move on
+				print("Error: "+tab_list[s].display_name+" forbidden. Continuing...")
+				printer.append_csv([
+					tab,
+					tab_list[s],
+					"FORBIDDEN",
+					"FORBIDDEN",
+					"FORBIDDEN",
+					"FORBIDDEN"
+					])
+				continue
+			except(praw.errors.NotFound):
+				# We couldn't find the subreddit, display an error and move on
+				print("Error: "+tab_list[s].display_name+" is not found. Continuing...")
+				printer.append_csv([
+					tab,
+					tab_list[s],
+					"NOT FOUND",
+					"NOT FOUND",
+					"NOT FOUND",
+					"NOT FOUND",
+					])
+			except Exception as ex:
+				# Gracefully catch all data in case of any uncaught error
+				print("Error: uncaught exception: " + str(type(ex)))
+				write_output(printer.output_csv())
+				return
+	
+	# print the data to csv file
+	write_output(printer.output_csv())
+	print("-------------------------")
+	print("CSV printed to "+OUTPUT_NAME)
+	print("-------------------------")
+
+	# Print out how long the entire process took
+	print("Data collection duration: "+str("%.3f" % (time.time()-start_time))+" seconds")
+	
+def get_tab_list(reddit,tab):
+    '''
+    	Generates a sorted list of all the subs in the tab of 
+	/u/ImaginaryMod
+
+		@param
+		-tab: Imaginary Network tab to get subreddits from
+
+		@return
+		Returns the subreddits under a certain INE tab,
+    '''
+    multireddit = reddit.get_multireddit('imaginarymod', 'im'+tab)
+    subs=multireddit.subreddits
+    subs.sort(key = lambda j:j.display_name)
+    return subs
+
+def write_output(out):
+	# Write to csv file...
+	output_file = open(OUTPUT_NAME,"w")
+	output_file.write(out)
+	output_file.close()
+
+if __name__ == "__main__":
+	main()
