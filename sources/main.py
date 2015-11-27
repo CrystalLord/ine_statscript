@@ -28,6 +28,7 @@ TABS = [
 	]
 
 OUTPUT_NAME = "output.csv"
+CENTRE = "ImaginaryNetwork"
 
 def main():
 	'''
@@ -35,7 +36,18 @@ def main():
 	'''
 	start_time = time.time()
 	r = praw.Reddit(user_agent="Imaginary_Network_Expanded_Health_Script")
-	printer = CSVPrinter()	
+	# Get a list of all the Imaginary Network Expanded mods
+	ine_mods = r.get_moderators(r.get_subreddit(CENTRE))
+	printer = CSVPrinter()
+	printer.set_header([
+		"Tab",
+		"Subreddit",
+		"Subscribers",
+		"Submissions",
+		"Health",
+		"Posts/Subs",
+		"% Mod",
+		])
 
 	output = ""
 	count = 0
@@ -46,14 +58,26 @@ def main():
 			try:
 				print("Getting "+tab_list[s].display_name+" data...")
 				sub = INESubreddit(r,tab_list[s], tab)
-				update_time = sub.update("all",30)
+				update_time = sub.update(to_update="all", mods=ine_mods, time_limit=30)
+				
+				if sub.get_subscribers() > 0:
+				  	post_sub_ratio = round((len(sub.submissions)/sub.get_subscribers())*1000)/1000
+				else:
+				  	post_sub_ratio = -1
+
+				if len(sub.submissions) > 0:
+					percent_mods = round((len(sub.mod_submissions)/len(sub.submissions))*1000)/1000
+				else:
+					percent_mods = 0
+
 				printer.append_csv([
 					tab,
 					tab_list[s],
 					sub.get_subscribers(),
 					len(sub.submissions),
 					sub.get_submissions_health(),
-					round(sub.post_subscriber_ratio()*1000)/1000
+					post_sub_ratio,
+					percent_mods,
 					])
 			except(praw.errors.Forbidden):
 				# It's a forbidden subreddit, display an error and move on
@@ -64,7 +88,8 @@ def main():
 					"FORBIDDEN",
 					"FORBIDDEN",
 					"FORBIDDEN",
-					"FORBIDDEN"
+					"FORBIDDEN",
+					"FORBIDDEN",
 					])
 				continue
 			except(praw.errors.NotFound):
@@ -77,12 +102,13 @@ def main():
 					"NOT FOUND",
 					"NOT FOUND",
 					"NOT FOUND",
+					"NOT FOUND",
 					])
-			except Exception as ex:
-				# Gracefully catch all data in case of any uncaught error
-				print("Error: uncaught exception: " + str(type(ex)))
-				write_output(printer.output_csv())
-				return
+			#except Exception as ex:
+			#   # Gracefully catch all data in case of any uncaught error
+			#	print("Error: uncaught exception: " + str(type(ex)))
+			#	write_output(printer.output_csv())
+			#	return
 	
 	# print the data to csv file
 	write_output(printer.output_csv())

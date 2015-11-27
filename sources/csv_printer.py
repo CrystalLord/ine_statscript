@@ -8,11 +8,12 @@
 class CSVPrinter:
 	def __init__(self):
 		'''
-		initialisation of the csv printer
+		Initialisation of the csv printer
 		'''
 		self.text = ""
-		self.csv = '"Tab","Subreddit","Subscribers","Number of Posts","Health","Posts/subs"\n'
-
+		self.csv = ""
+		self.header = ""
+	
 	def p(self, text):
 		'''
 		Kind of like print(), but also writes to the text buffer
@@ -23,6 +24,18 @@ class CSVPrinter:
 		self.text += text+'\n'
 		print(text)
 	
+	def set_header(self, header):
+		'''
+		Sets the header of the csv file
+		'''
+		header_cache = ""
+		for index in range(len(header)):
+			# Make sure not to add a comma before the first element
+			if index != 0:
+				header_cache += ','
+			header_cache += str(header[index])
+		self.header = header_cache + '\n'
+
 	def append_text(self, text):
 		'''
 		Append some text to the text buffer
@@ -57,4 +70,4 @@ class CSVPrinter:
 		return self.text
 	
 	def output_csv(self):
-		return self.csv
+		return self.header + self.csv
