@@ -27,6 +27,7 @@ class INESubreddit:
 		self.inst = subreddit
 		self.var = vars(subreddit)
 		self.submissions = list()
+		self.mod_submissions = list()
 
 	def __repr__(self):
 		'''
@@ -48,7 +49,7 @@ class INESubreddit:
 		s += "\t"+"Subscribers: "+str(self.get_subscribers())+"\n"
 		return s
 	
-	def update(self, to_update="all", time_limit=30):
+	def update(self, to_update="all", mods=[], time_limit=30):
 		'''
 		Update this INESubreddit to set its variables to latest values.
 
@@ -56,6 +57,7 @@ class INESubreddit:
 		we decide to update?
 			
 			@param
+			-mods: mod list to check if who are our mods.
 			-to_update: Which specific part you want to update
 			-time_limit: how many submissions we want to
 
@@ -68,11 +70,13 @@ class INESubreddit:
 			self.inst = self.reddit.get_subreddit(self.name, fetch=True)
 			self.var = vars(self.inst)
 			self.submissions = self.last_submissions(time_limit)
+			self.mod_submissions = self.get_mod_posts(mods)
 		elif to_update == "instance":
 			self.inst = self.reddit.get_subreddit(self.name, fetch=True)
 			self.var = vars(self.inst)
 		elif to_update == "submissions":
 			self.submissions = self.last_submissions(time_limit)
+			self.mod_submissions = self.get_mod_posts(mods)
 
 		# May be useless, but it's always good to have some debug data
 		return time.time()-start_time
@@ -111,12 +115,30 @@ class INESubreddit:
 			Returns the health of this INESubreddit instance
 		'''
 		return threshold.rate_health(len(self.submissions))
-	
-	def post_subscriber_ratio(self):
+
+	def get_mod_posts(self, mods, nonmod=False):
 		'''
-		Gets the post subscriber ratio
-			
+		Returns a list of modposts, unless nonmod is set to True.
+		Then it returns the posts that mods *didn't* make.
+		
+			@param
+			-mods: The mods you want to check against. Need not be this
+			subreddit's mods.
+			-nonmods: A boolean value telling whether to return mod or nonmod
+			submissions.
+
 			@return
-			Returns posts divided by subscribers
+			Returns a list of submissions made or not made by mods
 		'''
-		return len(self.submissions)/self.get_subscribers()
+		mod_usernames = [x.name for x in mods]
+		post_cache = []
+		for submission in self.submissions:
+			# Is the author's username part of mods?
+			if (submission.author.name in mod_usernames) and not nonmod:
+				# append the mod post
+				post_cache.append(submission)
+			elif (not submission.author.name in mod_usernames) and nonmod:
+				# append the nonmod post
+				post_cache.append(suubmission)
+		
+		return post_cache
