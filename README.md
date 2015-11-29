@@ -4,6 +4,7 @@ This script is for collecting data for the Imaginary Network Expanded to judge t
 ##Planned Features
 
 * [DONE!] ~~Percent mod posts~~
+* Change progress measurement into loading bar
 * More detailed exception handling
 * Better documentation
 * Read and update the CSV instead of rewriting it every time
