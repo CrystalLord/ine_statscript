@@ -107,7 +107,7 @@ def main():
 					percent_mods = 0
 
 				printer.append_csv([
-					tab,
+					tab_list.name,
 					tab_list.listings[s],
 					sub.get_subscribers(),
 					len(sub.submissions),

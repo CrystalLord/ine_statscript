@@ -4,7 +4,7 @@ This script is for collecting data for the Imaginary Network Expanded to judge t
 ##Planned Features
 
 * [DONE!] ~~Percent mod posts~~
-* Change progress measurement into loading bar
+* [DONE!] ~~Change progress measurement into loading bar~~
 * Include a re-update for subs with >100 posts
 * More detailed exception handling
 * Better documentation
