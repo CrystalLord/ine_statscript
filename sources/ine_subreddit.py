@@ -81,7 +81,7 @@ class INESubreddit:
 		# May be useless, but it's always good to have some debug data
 		return time.time()-start_time
 	
-	def last_submissions(self, time_limit=30):
+	def last_submissions(self, time_limit=30, post_limit=75):
 		'''
 		A costly function, gets the latest submitions based on a time limit
 
@@ -91,7 +91,8 @@ class INESubreddit:
 			@return
 			Returns a list of filtered submission classes
 		'''
-		submissions = self.inst.get_new(limit=100)
+		submissions = self.inst.get_new(limit=post_limit)
+		
 		filtered_submissions = []
 		
 		# Since submissions is a generator, we can't do list comprehensions with it
@@ -99,6 +100,10 @@ class INESubreddit:
 			v = vars(s)
 			if time.time()-v["created_utc"] <= time_limit*86400:
 				filtered_submissions.append(s)
+		
+		if len(filtered_submissions) >= post_limit:
+			filtered_submissions = self.last_submissions(time_limit, post_limit*2)
+	
 		return filtered_submissions
 		
 	def get_subscribers(self):
@@ -133,12 +138,16 @@ class INESubreddit:
 		mod_usernames = [x.name for x in mods]
 		post_cache = []
 		for submission in self.submissions:
-			# Is the author's username part of mods?
-			if (submission.author.name in mod_usernames) and not nonmod:
-				# append the mod post
-				post_cache.append(submission)
-			elif (not submission.author.name in mod_usernames) and nonmod:
-				# append the nonmod post
-				post_cache.append(suubmission)
-		
+			try:	
+				# Is the author's username part of mods?
+				if (submission.author.name in mod_usernames) and not nonmod:
+					# append the mod post
+					post_cache.append(submission)
+				elif (not submission.author.name in mod_usernames) and nonmod:
+					# append the nonmod post
+					post_cache.append(suubmission)
+			except AttributeError:
+				# We hit a post with a deleted author: continue
+				continue
+
 		return post_cache
