@@ -89,7 +89,7 @@ def main():
 	for tab_list in tab_lists:
 		for s in range(len(tab_list.listings)):
 			if USE_LOADING_BAR:
-				update_loading_bar(requests_count/total_required_requests)
+				update_loading_bar(requests_count/(total_required_requests-1))
 			try:
 				if not USE_LOADING_BAR:
 					print("    Getting "+tab_list.listings[s].display_name+" data...")
@@ -142,13 +142,13 @@ def main():
 					"NOT FOUND",
 					"NOT FOUND",
 					])
-			except Exception as ex:
-				# Gracefully catch all data in case of any uncaught error
-				# Or well, it's not very graceful yet...
-				print("Error: uncaught exception: " + str(type(ex)))
-				if not DRY_RUN:	
-					write_output(printer.output_csv())
-				return
+			#except Exception as ex:
+			#	# Gracefully catch all data in case of any uncaught error
+			#	# Or well, it's not very graceful yet...
+			#	print("Error: uncaught exception: " + str(type(ex)))
+			#	if not DRY_RUN:	
+			#		write_output(printer.output_csv())
+			#	return
 			requests_count += 1
 	
 	sys.stdout.write("\n")
