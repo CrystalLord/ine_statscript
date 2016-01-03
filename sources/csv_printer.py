@@ -25,11 +25,11 @@ class CSVPrinter:
 		self.text += text+'\n'
 		print(text)
 	
-	def set_timestamp(self, timestamp):
+	def set_timestamp(self, timestamp, columns=1):
 		'''
 		Set's the timestamp
 		'''
-		self.timestamp = timestamp+'\n'
+		self.timestamp = timestamp+","*(columns-1)+'\n'
 
 	def set_header(self, header):
 		'''

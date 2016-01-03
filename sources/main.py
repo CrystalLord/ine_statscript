@@ -59,7 +59,7 @@ def main():
 
 	# Setup the printer
 	printer = CSVPrinter()
-	printer.set_timestamp(get_date_string())
+	printer.set_timestamp(get_date_string(), 8)
 	printer.set_header([
 		'Tab',
 		'Subreddit',

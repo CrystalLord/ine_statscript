@@ -35,7 +35,7 @@ def compare(pathA, pathB):
 	matrixB = [x.split(",") for x in entriesB]
 
 	printer = CSVPrinter()
-	printer.set_timestamp(matrixA[0][0]+"/"+matrixB[0][0])
+	printer.set_timestamp(matrixA[0][0]+"/"+matrixB[0][0], 8)
 	printer.set_header(matrixA[1])
 
 	resized_matrixA, resized_matrixB = resize_csv(matrixA[2:], matrixB[2:])
