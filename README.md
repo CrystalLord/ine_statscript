@@ -8,4 +8,4 @@ This script is for collecting data for the Imaginary Network Expanded to judge t
 * More detailed exception handling
 * Better documentation
 * Read and update the CSV instead of rewriting it every time
-* Provide a month-by-month comparison
+* [DONE! Kinda] ~~Provide a month-by-month comparison~~

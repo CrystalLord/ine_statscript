@@ -9,6 +9,7 @@
 import time
 import praw
 import sys
+import datetime
 
 from csv_printer import *
 from ine_subreddit import *
@@ -58,17 +59,18 @@ def main():
 
 	# Setup the printer
 	printer = CSVPrinter()
+	printer.set_timestamp(get_date_string())
 	printer.set_header([
-		"Tab",
-		"Subreddit",
-		"Rank",
-		"Subscribers",
-		"Submissions",
-		"Health",
-		"Posts/Subs",
-		"% Mod",
+		'Tab',
+		'Subreddit',
+		'Rank',
+		'Subscribers',
+		'Submissions',
+		'Health',
+		'Posts/Subs',
+		'% Mod',
 		])
-
+	
 	output = ""
 	count = 0
 	
@@ -128,17 +130,6 @@ def main():
 					post_sub_ratio,
 					percent_mods,
 					])
-
-				# printer.append_csv([
-				# 	tab_list.name,
-				# 	tab_list.listings[s],
-				# 	rank,
-				# 	sub.get_subscribers(),
-				# 	len(sub.submissions),
-				# 	sub.get_submissions_health(),
-				# 	post_sub_ratio,
-				# 	percent_mods,
-				# 	])
 			except(praw.errors.Forbidden):
 				# It's a forbidden subreddit, display an error and move on
 				if not USE_LOADING_BAR:	
@@ -154,16 +145,6 @@ def main():
 					"FORBIDDEN",
 					"FORBIDDEN",
 					])
-				# printer.append_csv([
-				# 	tab,
-				# 	tab_list.listings[s],
-				# 	"FORBIDDEN",
-				# 	"FORBIDDEN",
-				# 	"FORBIDDEN",
-				# 	"FORBIDDEN",
-				# 	"FORBIDDEN",
-				# 	"FORBIDDEN",
-				# 	])
 			except(praw.errors.NotFound):
 				# We couldn't find the subreddit, display an error and move on
 				if not USE_LOADING_BAR:	
@@ -179,17 +160,6 @@ def main():
 					"NOT FOUND",
 					"NOT FOUND",
 					])
-	
-				# printer.append_csv([
-				# 	tab,
-				# 	tab_list.listings[s],
-				# 	"NOT FOUND",
-				# 	"NOT FOUND",
-				# 	"NOT FOUND",
-				# 	"NOT FOUND",
-				# 	"NOT FOUND",
-				# 	"NOT FOUND",
-				# 	])
 			except Exception as ex:
 				# Gracefully catch all data in case of any uncaught error
 				# Or well, it's not very graceful yet...
@@ -220,10 +190,10 @@ def main():
 		printer.append_csv(value)
 	
 	# print the data to csv file
-	if not DRY_RUN:	
+	if not DRY_RUN:
 		write_output(printer.output_csv())
 		print("-------------------------")
-		print("CSV printed to "+OUTPUT_NAME)
+		print("CSV printed to ../ine_logs/"+get_date_string()+"_"+OUTPUT_NAME)
 		print("-------------------------")
 	else:
 		print("-------------------------")
@@ -256,7 +226,7 @@ def get_tab_list(reddit,tab):
 
 def write_output(out):
 	# Write to csv file...
-	output_file = open(OUTPUT_NAME,"w")
+	output_file = open("../ine_logs/"+get_date_string()+"_"+OUTPUT_NAME,"w")
 	output_file.write(out)
 	output_file.close()
 
@@ -264,6 +234,9 @@ def update_loading_bar(percentage):
 	out = "Fetching: ["+str(round(percentage*100))+"%]"
 	sys.stdout.write("\r"+out)
 	sys.stdout.flush()
+
+def get_date_string():
+	return datetime.datetime.utcnow().strftime("%Y-%m-%d")
 
 # Main trick
 if __name__ == "__main__":
