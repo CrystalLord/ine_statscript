@@ -12,6 +12,7 @@ class CSVPrinter:
 		'''
 		self.text = ""
 		self.csv = ""
+		self.timestamp = ""
 		self.header = ""
 	
 	def p(self, text):
@@ -24,6 +25,12 @@ class CSVPrinter:
 		self.text += text+'\n'
 		print(text)
 	
+	def set_timestamp(self, timestamp):
+		'''
+		Set's the timestamp
+		'''
+		self.timestamp = timestamp+'\n'
+
 	def set_header(self, header):
 		'''
 		Sets the header of the csv file
@@ -57,11 +64,11 @@ class CSVPrinter:
 				self.csv += ','
 			
 			# Check if a integer or float
-			if isinstance(l[index], int) or isinstance(l[index], float):
-				self.csv += str(l[index])
-			else:
+			#if isinstance(l[index], int) or isinstance(l[index], float):
+			self.csv += str(l[index])
+			#else:
 				# Surround with quotes if not either
-				self.csv += '"'+str(l[index])+'"'
+			#	self.csv += '"'+str(l[index])+'"'
 
 		# Add a newline after each entry
 		self.csv += "\n"
@@ -70,4 +77,4 @@ class CSVPrinter:
 		return self.text
 	
 	def output_csv(self):
-		return self.header + self.csv
+		return self.timestamp + self.header + self.csv

@@ -1,0 +1,165 @@
+2015-12-02/2016-01-02
+Tab,Subreddit,Rank,Subscribers,Submissions,Health,Posts/Subs,% Mod
+characters,ImaginaryArchers,-2,44,6,-,0.002,-0.208
+characters,ImaginaryAssassins,-1,58,-1,-,0.0,-0.095
+characters,ImaginaryAstronauts,-1,102,-10,-,-0.003,-0.434
+characters,ImaginaryClerics,-2,47,11,u -> h,0.007,-0.174
+characters,ImaginaryCowboys,5,154,-4,-,-0.005,-0.222
+characters,ImaginaryFashion,-2,72,0,-,-0.009,0.071
+characters,ImaginaryKnights,-2,106,1,-,0.0,-0.142
+characters,ImaginaryLovers,-2,66,-9,-,-0.011,-0.231
+characters,ImaginaryMythology,-155,415,33,-,0.08,0.788
+characters,ImaginaryNatives,-3,29,-14,h -> u,-0.013,-0.375
+characters,ImaginaryNinjas,-1,34,6,-,0.004,-0.018
+characters,ImaginaryNobles,1,51,-2,-,-0.002,0.045
+characters,ImaginaryPirates,-2,51,2,-,0.001,-0.053
+characters,ImaginarySoldiers,-1,125,-7,-,-0.003,-0.201
+characters,ImaginaryVikings,-1,37,0,-,-0.001,0.0
+characters,ImaginaryWarriors,-2,92,-15,-,-0.005,-0.409
+characters,ImaginaryWitches,0,23,-15,-,-0.002,-0.258
+characters,ImaginaryWizards,-3,55,-14,-,-0.006,0.076
+races,ImaginaryAliens,0,86,-5,-,-0.003,-0.244
+races,ImaginaryAngels,-3,53,-3,-,-0.002,-0.083
+races,ImaginaryCentaurs,-2,7,4,u -> h,0.004,0.095
+races,ImaginaryDwarves,-1,41,3,-,0.002,-0.05
+races,ImaginaryElves,-1,88,5,-,0.002,-0.094
+races,ImaginaryFaeries,-5,25,-11,-,-0.007,-0.091
+races,ImaginaryGiants,-3,17,6,-,0.002,-0.042
+races,ImaginaryGnomes,-3,17,5,-,0.009,0.0
+races,ImaginaryGoblins,-1,22,4,c -> u,0.004,-0.222
+races,ImaginaryHumans,-2,48,18,-,0.012,-0.154
+races,ImaginaryImmortals,0,63,-7,-,-0.003,-0.156
+races,ImaginaryMerfolk,-1,10,-6,-,-0.004,-0.097
+races,ImaginaryOrcs,-1,43,9,-,0.007,-0.053
+races,ImaginaryTrolls,-1,23,0,-,0.0,0.0
+landscapes,ImaginaryAutumnscapes,0,86,3,-,0.001,-0.286
+landscapes,ImaginaryBattlefields,0,-257,-4,-,-0.001,-0.039
+landscapes,ImaginaryCityscapes,0,-382,11,-,0.001,-0.058
+landscapes,ImaginaryHellscapes,-80,1889,66,-,0.035,0.712
+landscapes,ImaginaryMindscapes,0,541,-1,-,0.0,-0.055
+landscapes,ImaginaryPathways,-147,589,39,-,0.066,0.897
+landscapes,ImaginarySeascapes,-3,19,-2,-,0.0,-0.211
+landscapes,ImaginarySkyscapes,0,54,2,-,0.0,0.012
+landscapes,ImaginaryStarscapes,0,-234,5,-,0.0,-0.083
+landscapes,ImaginaryVillages,-2,38,7,u -> h,0.002,0.166
+landscapes,ImaginaryWastelands,0,83,8,-,0.001,-0.178
+landscapes,ImaginaryWildlands,-1,-247,4,-,0.001,-0.075
+landscapes,ImaginaryWinterscapes,-4,77,22,-,0.006,0.032
+landscapes,ImaginaryWorlds,-1,122,-3,-,-0.001,-0.231
+nature,ImaginaryAnimals,-150,522,82,-,0.157,0.744
+nature,ImaginaryCanyons,-1,23,1,-,0.0,-0.083
+nature,ImaginaryCaves,-1,28,4,u -> h,0.003,-0.111
+nature,ImaginaryDeserts,-2,56,0,-,-0.001,0.0
+nature,ImaginaryForests,-2,50,-12,-,-0.007,0.027
+nature,ImaginaryGlaciers,0,24,-8,u -> c,-0.008,0.0
+nature,ImaginaryIslands,-1,26,-1,-,-0.001,-0.111
+nature,ImaginaryLakes,-1,25,-4,-,-0.005,0.0
+nature,ImaginaryMountains,-1,42,7,-,0.005,-0.172
+nature,ImaginaryRivers,-1,29,-4,-,-0.005,-0.111
+nature,ImaginaryTrees,2,61,9,-,0.005,0.122
+nature,ImaginaryVolcanoes,-1,20,5,-,0.005,0.25
+nature,ImaginaryWaterfalls,-2,30,0,-,0.0,-0.059
+nature,ImaginaryWeather,-2,78,-6,-,-0.005,-0.05
+architecture,ImaginaryArchitecture,0,80,-2,-,-0.001,-0.022
+architecture,ImaginaryAsylums,-1,33,-2,-,-0.002,0.0
+architecture,ImaginaryCastles,1,85,29,-,0.006,-0.236
+architecture,ImaginaryFactories,-2,40,2,-,0.001,0.0
+architecture,ImaginaryInteriors,-1,43,-4,-,-0.001,-0.285
+architecture,ImaginaryMonuments,-1,51,-2,-,-0.001,-0.167
+architecture,ImaginaryPrisons,-1,26,-1,-,-0.001,0.0
+architecture,ImaginaryRuins,-1,90,5,-,0.001,-0.143
+architecture,ImaginaryTaverns,-1,60,-8,-,-0.004,0.021
+architecture,ImaginaryTemples,-1,78,4,-,0.001,-0.304
+architecture,ImaginaryTowers,-2,15,3,u -> h,0.002,-0.059
+architecture,ImaginaryWalls,-3,41,3,-,0.002,0.0
+monsters,ImaginaryBeasts,-1,47,-10,-,-0.003,-0.165
+monsters,ImaginaryBehemoths,-1,32,3,-,0.0,0.149
+monsters,ImaginaryDemons,10,933,17,-,0.002,-0.292
+monsters,ImaginaryDinosaurs,-2,-10,-36,-,-0.015,-0.358
+monsters,ImaginaryDragons,0,74,-8,-,-0.001,-0.218
+monsters,ImaginaryElementals,-1,40,-9,-,-0.005,-0.227
+monsters,ImaginaryHorrors,0,-35,-16,-,-0.001,-0.132
+monsters,ImaginaryLeviathans,0,-205,6,-,0.0,-0.175
+monsters,ImaginaryMonsterGirls,-141,704,58,-,0.082,0.914
+monsters,ImaginarySpirits,-5,32,1,-,0.0,-0.444
+monsters,ImaginaryUndead,-2,17,1,-,0.001,-0.433
+monsters,ImaginaryVampires,0,24,1,-,0.001,-0.106
+monsters,ImaginaryWerewolves,-1,38,0,-,0.0,-0.091
+monsters,ImaginaryWorldEaters,2,123,0,-,0.0,0.166
+technology,ImaginaryAdrenaline,1,41,1,-,0.001,-0.125
+technology,ImaginaryAetherpunk,-1,76,0,-,0.0,0.0
+technology,ImaginaryAirships,1,99,2,-,0.0,-0.22
+technology,ImaginaryArmor,0,-24,4,-,0.001,0.023
+technology,ImaginaryArtifacts,-3,28,-6,-,-0.003,-0.111
+technology,ImaginaryBlueprints,-1,22,-4,-,-0.002,0.0
+technology,ImaginaryBooks,-1,19,2,u -> h,0.001,0.0
+technology,ImaginaryCybernetics,0,92,-9,-,-0.005,-0.396
+technology,ImaginaryCyberpunk,-1,100,-16,-,-0.003,0.059
+technology,ImaginaryDerelicts,-1,73,-5,-,-0.003,-0.602
+technology,ImaginaryDieselpunk,-1,48,-3,u -> c,-0.002,-0.25
+technology,ImaginaryFood,-1,16,-6,-,-0.009,-0.303
+technology,ImaginaryFutureWar,-1,57,-19,h -> u,-0.003,-0.486
+technology,ImaginaryHistory,-1,-89,1,u -> h,0.001,0.138
+technology,ImaginaryMechs,-1,88,-15,-,-0.004,-0.373
+technology,ImaginaryMusic,-2,22,-6,u -> c,-0.009,0.0
+technology,ImaginaryPolitics,-5,-5,-2,-,-0.002,-0.5
+technology,ImaginaryPortals,0,74,0,-,-0.002,-0.103
+technology,ImaginaryPropaganda,-4,17,8,c -> u,0.004,-0.5
+technology,ImaginaryRobotics,-4,23,-14,-,-0.004,-0.492
+technology,ImaginaryScience,-2,9,-5,-,-0.002,-0.118
+technology,ImaginaryStarships,-1,106,-25,-,-0.003,-0.218
+technology,ImaginarySteampunk,0,59,2,u -> h,0.001,-0.312
+technology,ImaginaryVehicles,-1,-38,-11,-,-0.003,-0.145
+technology,ImaginaryWarships,-3,22,-4,-,-0.001,0.125
+technology,ImaginaryWeaponry,-1,-36,3,-,0.001,0.246
+technology,Imaginaryvessels,-1,59,2,-,0.001,-0.077
+technology,imaginarydesigns,-1,10,-1,-,-0.001,0.0
+technology,imaginarymaps,0,-66,-3,-,-0.001,-0.009
+fandoms,ImaginaryAnime,1,57,-15,-,-0.014,-0.44
+fandoms,ImaginaryAperture,-5,13,-1,-,-0.002,-1.0
+fandoms,ImaginaryArrakis,-3,20,0,-,0.0,-0.364
+fandoms,ImaginaryAzeroth,7,460,-17,-,-0.007,0.086
+fandoms,ImaginaryBakerSt,-2,6,-10,u -> c,-0.017,0.067
+fandoms,ImaginaryCybertron,-5,17,-3,-,-0.008,-1.0
+fandoms,ImaginaryDC,-159,319,28,-,0.088,0.857
+fandoms,ImaginaryDisney,-2,38,-6,-,-0.004,-0.131
+fandoms,ImaginaryEquestria,-3,-6,16,-,0.017,-0.124
+fandoms,ImaginaryFallout,4,5032,0,-,-0.004,0.149
+fandoms,ImaginaryFederation,-2,11,-4,-,-0.007,0.151
+fandoms,ImaginaryGallifrey,-3,2,-19,-,-0.011,-0.037
+fandoms,ImaginaryGaming,-3,36,-7,-,-0.005,-0.167
+fandoms,ImaginaryGotham,-2,39,-9,-,-0.006,-0.196
+fandoms,ImaginaryHogwarts,-1,221,-18,-,-0.007,-0.198
+fandoms,ImaginaryJedi,0,362,75,-,0.005,-0.259
+fandoms,ImaginaryKanto,-1,20,-10,-,-0.004,0.165
+fandoms,ImaginaryMarvel,5,130,-29,-,-0.024,-0.093
+fandoms,ImaginaryMiddleEarth,0,71,-4,-,-0.001,-0.076
+fandoms,ImaginaryMutants,-1,32,-17,h -> u,-0.015,0.034
+fandoms,ImaginaryNarnia,-5,8,-3,-,-0.008,0.0
+fandoms,ImaginaryNewEden,-6,-1,0,-,0.0,0.0
+fandoms,ImaginaryNewNewYork,3,72,-2,-,-0.002,-0.056
+fandoms,ImaginaryOldKingdom,-6,3,0,-,-0.001,0.0
+fandoms,ImaginaryOoo,-1,33,-18,-,-0.007,0.08
+fandoms,ImaginaryRuneterra,-4,43,10,u -> h,0.021,0.355
+fandoms,ImaginarySanctuary,-5,13,-1,-,-0.003,-0.125
+fandoms,ImaginarySpidey,-5,40,-16,-,-0.056,0.029
+fandoms,ImaginaryStarcraft,-2,29,-9,-,-0.015,-0.167
+fandoms,ImaginarySunnydale,-3,2,-6,u -> c,-0.01,0.0
+fandoms,ImaginaryTamriel,-1,204,8,-,0.002,-0.396
+fandoms,ImaginaryVerse,-2,14,-8,u -> c,-0.012,-1.0
+fandoms,ImaginaryWarhammer,7,2885,9,-,-0.004,-0.041
+fandoms,ImaginaryWesteros,0,-499,-5,-,-0.001,-0.116
+fandoms,ImaginaryWitcher,4,238,-3,-,-0.002,0.041
+fandoms,imaginarycosmere,-1,25,-3,-,-0.004,-0.75
+nsfw,ImaginaryBoners,-1,247,15,-,0.001,-0.114
+nsfw,ImaginaryCarnage,-2,74,2,-,0.001,0.099
+nsfw,ImaginaryLadyBoners,-1,40,-11,-,-0.014,-0.144
+nsfw,ImaginaryWTF,-1,100,-3,-,-0.002,-0.063
+meta,ArtistOfTheDay,-6,0,0,-,0.0,0.0
+meta,ICanDrawThat,0,-1133,7,-,0.0,0.003
+meta,ImaginaryAww,-2,-11,-8,-,-0.001,-0.066
+meta,ImaginaryBestOf,53,2129,0,-,-0.011,0.0
+meta,ImaginaryFeels,-2,97,1,-,0.0,-0.126
+meta,ImaginaryJerk,-6,4,0,-,0.0,0.0
+meta,ImaginaryNetwork,-2,11,-7,-,-0.003,-0.01
+meta,ImaginaryTurtleWorlds,-1,30,-7,-,-0.001,-0.264
