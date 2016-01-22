@@ -18,19 +18,28 @@ Please be aware: This script is NOT user friendly; it's more hostile than your m
 
 ###Setting up:
 
-Step 0 (ENVIRONEMT SETUP): Install any version of [Python 3](https://www.python.org/downloads/). It should work fine for 3.5, the current release. You also must have the [Python Reddit API Wrapper (PRAW)](https://praw.readthedocs.org/en/stable/) installed on your machine. PRAW can be installed via the `pip install praw` command, which makes it very easy to use. Please be aware that Python 2.7 or Python Anaconda probably will **NOT** work. You can check your Python3 version at any time using `python3 --version`. If you used pip to install PRAW, You can check your PRAW version by using `pip list`.
+**Step 0 (ENVIRONEMT SETUP):**
 
-Step 1: Insure that [/u/ImaginaryMod](https://www.reddit.com/user/imaginarymod) is up to date with its public multireddits. If it's not up to date, the script will not gather the correct data, and will not provide the data you want.
+Install any version of [Python 3](https://www.python.org/downloads/). It should work fine for 3.5, the current release. You also must have the [Python Reddit API Wrapper (PRAW)](https://praw.readthedocs.org/en/stable/) installed on your machine. PRAW can be installed via the `pip install praw` command, which makes it very easy to use. Please be aware that Python 2.7 or Python Anaconda probably will **NOT** work. You can check your Python3 version at any time using `python3 --version`. If you used pip to install PRAW, You can check your PRAW version by using `pip list`.
 
-Step 2: If you know how to use git, clone the master branch of this repository on to your system. If you don't know how to use git, download the zip/tarball and open it into a directory of choice (download is on the right).
+**Step 1:**
 
-Step 3: Make sure you have a reasonably stable internet connection. Currently the script does not recover properly when the internet cuts out, and the collection will be made invalid.
+Insure that [/u/ImaginaryMod](https://www.reddit.com/user/imaginarymod) is up to date with its public multireddits. If it's not up to date, the script will not gather the correct data, and will not provide the data you want.
+
+**Step 2:**
+
+If you know how to use git, clone the master branch of this repository on to your system. If you don't know how to use git, download the zip/tarball and open it into a directory of choice (download is on the right).
+
+**Step 3:**
+
+Make sure you have a reasonably stable internet connection. Currently the script does not recover properly when the internet cuts out, and the collection will be made invalid.
 
 On completion of these 3 (or 4) steps, congratulations! You now have a working INE Statscript on your PC.
 
 ###How to use:
 
-**Data Collection**
+####Data Collection
+
 Open the `/ine_statscript/sources` directory in terminal and run `python3 main.py`. If it stalls forever, it's because you probably ran `python main.py` instead. A loading screen will appear, it will take roughly 17 minutes to collect all the data. Once it is done, it should give a message that looks like this
 
 
@@ -48,7 +57,8 @@ A new CSV file will appear in `/ine_statscript/ine_logs`. Be warned, running the
 
 CSV files can be opened in any spreadsheet program that's worth more than a roll of used toliet paper.
 
-**Data comparison**
+####Data comparison
+
 Much like collection, open the `/ine_statscript/sources` directory in terminal and run `python3 compare.py`. A prompt should appear that looks like this
 
 	Compare 2 INE matrices
