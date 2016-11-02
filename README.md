@@ -24,7 +24,7 @@ Install any version of [Python 3](https://www.python.org/downloads/). It should 
 
 **Step 1:**
 
-Insure that [/u/ImaginaryMod](https://www.reddit.com/user/imaginarymod) is up to date with its public multireddits. If it's not up to date, the script will not gather the correct data, and will not provide the data you want.
+Ensure that [/u/ImaginaryMod](https://www.reddit.com/user/imaginarymod) is up to date with its public multireddits. If it's not up to date, the script will not gather the correct data, and will not provide the data you want.
 
 **Step 2:**
 
@@ -40,7 +40,7 @@ On completion of these 3 (or 4) steps, congratulations! You now have a working I
 
 ####Data Collection
 
-Open the `/ine_statscript/sources` directory in terminal and run `python3 main.py`. If it stalls forever, it's because you probably ran `python main.py` instead. A loading screen will appear, it will take roughly 17 minutes to collect all the data. Once it is done, it should give a message that looks like this
+Open the `/ine_statscript/sources` directory in terminal and run `python3 main.py`. If it stalls forever, it's because you probably ran `python main.py` instead. A loading screen will appear, it will take roughly 20 minutes to collect all the data. Once it is done, it should give a message that looks like this
 
 
 	Getting Tabs...
