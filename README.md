@@ -7,7 +7,7 @@ This script is for collecting data for the Imaginary Network Expanded to judge t
 * [DONE!] ~~Include a re-update for subs with >100 posts~~
 * More detailed exception handling
 * Better documentation
-* Read and update the CSV instead of rewriting it every time
+* [CANCELLED] ~~Read and update the CSV instead of rewriting it every time~~
 * [DONE!] ~~Provide a month-by-month comparison~~
 * Remove the auto-mod reliance (see `generalised` branch)
 
