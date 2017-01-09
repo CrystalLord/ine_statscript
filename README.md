@@ -22,7 +22,7 @@ Please be aware: This script is NOT user friendly; it's more hostile than your m
 
 Install any version of [Python 3](https://www.python.org/downloads/). It should work fine for 3.5, the current release. You also must have the [Python Reddit API Wrapper (PRAW)](https://praw.readthedocs.org/en/stable/) installed on your machine. PRAW can be installed via the `pip install praw` command, which makes it very easy to use. Please be aware that Python 2.7 or Python Anaconda probably will **NOT** work. You can check your Python3 version at any time using `python3 --version`. If you used pip to install PRAW, You can check your PRAW version by using `pip list`.
 
-**NOTE:** Releases >2.0 of the statscript require that PRAW be at least greater than version 4.0.
+NOTE: Releases >2.0 of the statscript require that PRAW be at least greater than version 4.0.
 
 **Step 1:**
 
@@ -36,7 +36,34 @@ If you know how to use git, clone the master branch of this repository on to you
 
 Make sure you have a reasonably stable internet connection. Currently the script does not recover properly when the internet cuts out, and the collection will be made invalid.
 
-On completion of these 3 (or 4) steps, congratulations! You now have a working INE Statscript on your PC.
+**Step 4:**
+
+(NEW IN PRAW 4) ---
+Due to the added requirement of using OAuth2 authentication, prior to running the script you must now associate the script with a valid reddit account. To do this, you must go to your reddit accounts preferences, and visit the [apps tab](https://www.reddit.com/prefs/apps/).
+
+Click the "create another app..." button, and put down:
+
+* The name of the application in the `name` field
+* Select 'script' for the type of application
+* The description of the application in the `description` field
+* The about URL should link to this repository hosted on github.com [https://www.github.com/CrystalLord/ine\_statscript](https://www.github.com/CrystalLord/ine_statscript)
+* The redirect uri should be 'http://www.example.com/unused/redirect/uri'. Don't worry about this for now.
+
+Create the app. Afterwards, you will have to go through and register for API use.
+
+From here, check this guide from reddit on how to identify the [secret](https://github.com/reddit/reddit/wiki/OAuth2).
+
+Create the file `client_secret` (note no file extension) if it doesn't already exist under the `sources` directory.
+
+The first line of this text file has to be the hash right under the text "personal use script"
+
+The second line of this text file has to be the secret code detailed above.
+
+These two lines will allow the bot to access the Reddit API and use it to complete the collection.
+
+---
+
+On completion of these 4 (or 5) steps, congratulations! You now have a working INE Statscript on your PC.
 
 ###How to use:
 
