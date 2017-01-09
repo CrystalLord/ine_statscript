@@ -8,6 +8,7 @@ import time
 import praw
 import prawcore
 import sys
+import os
 import datetime
 
 from tab_list import TabList
@@ -23,7 +24,8 @@ def data_rake(printer, moderator_centre, tabs, use_loading_bar=True):
     # Load secret from external file
     # The secret file contains the user agent code and the client code
     # both of which are needed for reddit's OAuth2 system
-    secret_file = open("client_secret", "r")
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    secret_file = open(script_dir+"/client_secret", "r")
     client_id_code = secret_file.readline().rstrip()
     client_secret_code = secret_file.readline().rstrip()
     secret_file.close()
@@ -132,14 +134,14 @@ def data_rake(printer, moderator_centre, tabs, use_loading_bar=True):
                     "NOT FOUND",
                     "NOT FOUND",
                     ])
-            #except Exception as ex:
+            except Exception as ex:
                 # Gracefully catch all data in case of any uncaught error
                 # Or well, it's not very graceful yet...
-            #    print("Error: uncaught exception: " + str(type(ex)))
-            #    if not DRY_RUN:    
-            #        print("Not Dry Run: Halting and writing output.")
-            #        write_output(printer.output_csv())
-            #    return
+                print("Error: uncaught exception: " + str(type(ex)))
+                if not DRY_RUN:    
+                    print("Not Dry Run: Halting and writing output.")
+                    write_output(printer.output_csv())
+                return
 
             requests_count += 1 # We made a request! Incremement the counter
 
@@ -152,21 +154,28 @@ def data_rake(printer, moderator_centre, tabs, use_loading_bar=True):
     sorted_data = collected_data[:]
     sorted_data.sort(key=lambda r: r[3], reverse=True)
     
+    # Helper function to aid in ranking subreddits by subcriber count
     def ranking_helper(element, r):
+        '''
+            Takes in a list of length 3 or more and then assigns the 'r' to the
+            third element.
+        '''
         new_element = element
         new_element[2] = r
         return new_element
     
-    #TODO: Fix this monstrosity (see below fix commented out)
-    ranked_data = [
-        ranking_helper(
-            collected_data[i],
-            sorted_data.index(collected_data[i])+1
-        ) for i in range(len(sorted_data))]
+    #ranked_data = [
+    #    ranking_helper(
+    #        collected_data[i],
+    #        sorted_data.index(collected_data[i])+1
+    #    ) for i in range(len(sorted_data))]
     
-    #for i in range(len(sorted_data)):
-    #    ranked_data.append(ranking_helper(collected_data[i],
-    #        sorted_data.index(collected_data[i]+1)))
+    # List to store subreddit listings.
+    ranked_data = []
+
+    for i in range(len(sorted_data)):
+        ranked_data.append(ranking_helper(collected_data[i],
+            sorted_data.index(collected_data[i])+1))
 
     for value in ranked_data:
         printer.append_csv(value)
