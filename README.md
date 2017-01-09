@@ -22,6 +22,8 @@ Please be aware: This script is NOT user friendly; it's more hostile than your m
 
 Install any version of [Python 3](https://www.python.org/downloads/). It should work fine for 3.5, the current release. You also must have the [Python Reddit API Wrapper (PRAW)](https://praw.readthedocs.org/en/stable/) installed on your machine. PRAW can be installed via the `pip install praw` command, which makes it very easy to use. Please be aware that Python 2.7 or Python Anaconda probably will **NOT** work. You can check your Python3 version at any time using `python3 --version`. If you used pip to install PRAW, You can check your PRAW version by using `pip list`.
 
+**NOTE:** Releases >2.0 of the statscript require that PRAW be at least greater than version 4.0.
+
 **Step 1:**
 
 Ensure that [/u/ImaginaryMod](https://www.reddit.com/user/imaginarymod) is up to date with its public multireddits. If it's not up to date, the script will not gather the correct data, and will not provide the data you want.
