@@ -39,6 +39,7 @@ Make sure you have a reasonably stable internet connection. Currently the script
 **Step 4:**
 
 (NEW IN PRAW 4) ---
+
 Due to the added requirement of using OAuth2 authentication, prior to running the script you must now associate the script with a valid reddit account. To do this, you must go to your reddit accounts preferences, and visit the [apps tab](https://www.reddit.com/prefs/apps/).
 
 Click the "create another app..." button, and put down:
@@ -55,13 +56,7 @@ From here, check this guide from reddit on how to identify the [secret](https://
 
 Create the file `client_secret` (note no file extension) if it doesn't already exist under the `sources` directory.
 
-The first line of this text file has to be the hash right under the text "personal use script"
-
-The second line of this text file has to be the secret code detailed above.
-
-These two lines will allow the bot to access the Reddit API and use it to complete the collection.
-
----
+The first line of this text file has to be the hash right under the text "personal use script". The second line of this text file has to be the secret code detailed above. These two lines will allow the bot to access the Reddit API and use it to complete the collection.
 
 On completion of these 4 (or 5) steps, congratulations! You now have a working INE Statscript on your PC.
 
