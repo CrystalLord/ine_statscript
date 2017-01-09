@@ -8,6 +8,8 @@
 import praw
 import time
 
+SECONDS_PER_DAY = 86400
+
 from health_threshold import *
 
 class INESubreddit:
@@ -25,7 +27,6 @@ class INESubreddit:
         self.reddit = reddit
         
         self.inst = subreddit
-        self.var = vars(subreddit)
         self.submissions = list()
         self.mod_submissions = list()
 
@@ -67,13 +68,11 @@ class INESubreddit:
         start_time = time.time()
 
         if to_update == "all":
-            self.inst = self.reddit.get_subreddit(self.name, fetch=True)
-            self.var = vars(self.inst)
+            self.inst = self.reddit.subreddit(self.name)
             self.submissions = self.last_submissions(time_limit)
             self.mod_submissions = self.get_mod_posts(mods)
         elif to_update == "instance":
-            self.inst = self.reddit.get_subreddit(self.name, fetch=True)
-            self.var = vars(self.inst)
+            self.inst = self.reddit.subreddit(self.name)
         elif to_update == "submissions":
             self.submissions = self.last_submissions(time_limit)
             self.mod_submissions = self.get_mod_posts(mods)
@@ -87,29 +86,35 @@ class INESubreddit:
 
             @param
             -time_limit: number of days ago to search for old posts
+            -post_limit: maximum number of posts to check until we recheck the
+                subreddit. This is to prevent overchecking inactive subreddits.
 
             @return
             Returns a list of filtered submission classes
         '''
-        submissions = self.inst.get_new(limit=post_limit)
+        submissions = self.inst.new(limit=post_limit)
         
         filtered_submissions = []
         
-        # Since submissions is a generator, we can't do list comprehensions with it
+        # Since submissions is a generator, we can't do list comprehensions
+        # with it.
         for s in submissions:
             v = vars(s)
-            if time.time()-v["created_utc"] <= time_limit*86400:
+            # Only count posts posted within the last time limit
+            if time.time()-v["created_utc"] <= time_limit * SECONDS_PER_DAY:
                 filtered_submissions.append(s)
         
         if len(filtered_submissions) >= post_limit:
-            filtered_submissions = self.last_submissions(time_limit, post_limit*2)
+            filtered_submissions = self.last_submissions(time_limit,
+                post_limit * 2)
     
         return filtered_submissions
         
     def get_subscribers(self):
-        return self.var["subscribers"]
+        return self.inst.subscribers
     
-    def get_submissions_health(self, threshold=HealthThreshold(15, 5),time_limit=30):
+    def get_submissions_health(self, threshold=HealthThreshold(15, 5),
+        time_limit=30):
         '''
         Checks the health based on a HealthThreshold object
             
