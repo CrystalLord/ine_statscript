@@ -1,7 +1,7 @@
-#INE Health Stat Script
+# INE Health Stat Script
 This script is for collecting data for the Imaginary Network Expanded to judge the health of its members.
 
-##Planned Features
+## Planned Features
 * [DONE!] ~~Percent mod posts~~
 * [DONE!] ~~Change progress measurement into loading bar~~
 * [DONE!] ~~Include a re-update for subs with >100 posts~~
@@ -11,12 +11,12 @@ This script is for collecting data for the Imaginary Network Expanded to judge t
 * [DONE!] ~~Provide a month-by-month comparison~~
 * Remove the auto-mod reliance (see `generalised` branch)
 
-##Tutorial on how to use INE Statscript
+## Tutorial on how to use INE Statscript
 As of this writing, INE Statscript is not packaged into an executable. This means it may require a prelimary setup step. Later versions may not need this step as a downloadable package may be available.
 
 Please be aware: This script is NOT user friendly; it's more hostile than your mother-in-law. As such, it's still under semi-active development. Prod me more if you want it to be better, or fork it yourself!
 
-###Setting up:
+### Setting up:
 
 **Step 0 (ENVIRONEMT SETUP):**
 
@@ -60,9 +60,9 @@ The first line of this text file has to be the hash right under the text "person
 
 On completion of these 4 (or 5) steps, congratulations! You now have a working INE Statscript on your PC.
 
-###How to use:
+### How to use:
 
-####Data Collection
+#### Data Collection
 
 Open the `/ine_statscript/sources` directory in terminal and run `python3 main.py`. If it stalls forever, it's because you probably ran `python main.py` instead. A loading screen will appear, it will take roughly 20 minutes to collect all the data. Once it is done, it should give a message that looks like this
 
@@ -81,7 +81,7 @@ A new CSV file will appear in `/ine_statscript/ine_logs`. Be warned, running the
 
 CSV files can be opened in any spreadsheet program that's worth more than a roll of used toliet paper.
 
-####Data comparison
+#### Data comparison
 
 Much like collection, open the `/ine_statscript/sources` directory in terminal and run `python3 compare.py`. A prompt should appear that looks like this
 
